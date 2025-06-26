@@ -4,25 +4,219 @@ body {
 
 /* 👇👇👇 Paste the styles of your Fancy Robot from the "Position it right" assignment here 👇👇👇 */
 
-.robot-container {
+.robot-container { width: 900px;
+    height: 900px;
+    /* border: 2px solid white; */
+    margin: 75px auto;
 }
 
-.robot-face-shape {
+.robot-face-shape { margin: auto;
+    height: 500px;
+    width: 500px;
+    border: 20px solid green;
+    border-radius: 25%;
+    background: silver;
+    background-image: url('https://fastly.picsum.photos/id/893/4342/2895.jpg?hmac=fQQo3ufVfIXHYgZrJgCHACadJMc9Uw0We_nFVRIbzcM');
+    background-size: cover;
+    position: relative;
+    top: 200px;
 }
 
-.robot-eye-left {
+.robot-eye-left { 
+    position:relative;
+    top: 25px;
+    left: 25px;
+    width: 200px;
+    height: 200px;
 }
+/* rotate cw */
+.spirallefteye{
+    position:relative;
+    top: -175px;
+    left: 25px;
+    --b: 10px;  /* border thickness */
+    --s: 150px; /* preferred size shape */
+    --c: #1d1b3b;
+
+    width: round(var(--s),4*var(--b));
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: 
+    repeating-radial-gradient(calc(2*var(--b)) at top,#0000 -1px,var(--c) 0 calc(50% - 1px),#0000 50% calc(100% - 1px)) calc(50% + var(--b)) 100%, 
+    repeating-radial-gradient(calc(2*var(--b)) at bottom,var(--c) -1px,#0000 0 calc(50% - 1px),var(--c) 50% calc(100% - 1px)) 50% 0;
+    background-size: 150% 50%;
+    background-repeat: no-repeat;
+    mask: 
+    radial-gradient(calc(1.5*var(--b)) at calc(100% - var(--b)/2) 0, #0000 calc(100%/3), #000 calc(100%/3 + 1px) 110%, #0000 0) calc(50% + var(--b)/2) 
+    100%/calc(3*var(--b)) 50% exclude no-repeat, 
+    conic-gradient(#000 0 0);
+    animation: left-spin 2s none infinite linear;
+
+}
+
+@keyframes left-spin {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+
+/* rotate ccw */
+.lefteyebase{ 
+    position:relative;
+    top: 5px;
+    left: 5px;
+    height: 200px;
+    width: 200px;
+    /* background: yellow; */
+    background-image: conic-gradient(red, orange, yellow, green, blue, indigo, violet, red);
+    border-radius: 50%;
+    animation: left-base-spin 2s none infinite linear;
+}
+
+@keyframes left-base-spin {
+    from{
+        transform: rotate(360deg);
+    }
+    to{
+        transform: rotate(0deg);
+    }
+}
+
 
 .robot-eye-right {
+    position: absolute;
+    top: 35px;
+    left: 250px;
+    height: 100px;
+    width: 100px;
+    /* border: 3px solid white; */
 }
 
+/* color change invert */
+.righteyebase{
+    position: relative;
+    top: 0px;
+    left: 0px;
+    height: 200px;
+    width: 200px;
+    background-image: radial-gradient(blue, rgb(58, 230, 6), green);
+    border-radius: 50%;
+    animation: right-eye-base 1s infinite linear
+}
+
+@keyframes right-eye-base{
+    0%{
+        filter:invert(0%)
+    }
+    50%{
+        filter: invert(100%);
+    }
+    100% {
+        filter: invert(0%);
+    }
+}
+
+/* disappear in/out */
+.rightcrosseye{
+    position: relative;
+    top: -165px;
+    left: 39px;
+    --c: #e62121;
+    height: 125px;
+    aspect-ratio: 1;
+    box-shadow: 0 0 0 35px inset var(--c);
+    border-image: conic-gradient(var(--c) 0 0) 50%/calc(50% - 15px);
+    /* clip-path: circle(); remove this if you don't want a rounded shape */
+    rotate: 45deg;
+    animation: right-cross 3s infinite linear;
+}
+
+@keyframes right-cross{
+    0%{
+        opacity: 100;
+    }
+    25% {
+        opacity: 50;
+    }
+    50%{
+        opacity: 0;
+    }
+    75% {
+        opacity: 50;
+    }
+    100%{
+        opacity: 100;
+    }
+}
+
+/* move left quickly, then right slowly */
 .robot-ear-left {
+    position: relative;
+    top: -100px;
+    left: 70px;
+    width: 0;
+    height: 0;
+    border-top: 50px solid transparent;
+    border-right: 100px solid rgb(5, 187, 20);
+    border-bottom: 50px solid transparent;
+    /* transition: all 0.5s ease-in-out 3s; */
+    animation: ear-left 3s none infinite alternate 2s;
+    /* animation-name: ear-left;
+    animation-duration: 3s;
+    animation-fill-mode: none;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: 2s; */
 }
 
+@keyframes ear-left {
+    from{
+        transform: translateX(-50px);
+    }
+    tp {
+        transform: translateX(50px);
+    }
+
+}
+
+/* move right quickly, then left slowly */
 .robot-ear-right {
+    position: relative;
+    top: -200px;
+    left: 730px;
+    width: 0;
+    height: 0;
+    border-top: 50px solid transparent;
+    border-left: 100px solid rgb(208, 255, 0);
+    border-bottom: 50px solid transparent;
+    /* transition: all .5s ease-in-out 2s;
+    transform: translateX(50px); */
+    animation: ear-right 2s none infinite alternate 1s;
 }
 
+@keyframes ear-right{
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(50px);
+    }
+}
+
+/* scale very fast */
 .robot-nose {
+    position: relative;
+    left: 150px;
+    top: 50px;
+    border: 3px solid rgb(30, 255, 0);
+    border-radius: 50%;
+    background-color: rgba(105, 38, 49, 0.61);
+    height: 5em;
+    width: 9em;
 }
 
 .robot-nose:before {
@@ -31,11 +225,212 @@ body {
 .robot-nose:after {
 }
 
+/* scale on hover */
 .robot-teeth {
+    position: relative;
+    display: grid;
+    grid-template-columns: 40px 40px 40px 40px 40px 40px;
+    grid-template-rows: 41px, 41px;
+    row-gap: 2px;
+    column-gap: 2px;
+    left: 100px ;
+    top: 70px;
+    height: 95px;
+    width: 265px;
+    border: 5px solid;
+    border-radius: 10%;
+    background-color: #0471b9;
+    padding: 6px 10px 3px;
+    transition: all 3s ease-in-out 0.5s ;
+    /* transition-delay: 1s;
+    transition-duration: 3s;
+    transition-property: background-color;
+    transition-timing-function: ease-in-out; */
 }
 
+.robot-teeth:hover{
+    background-color: #b9a704;
+    transform: scale(1.3);
+}
+/* for all teeth, switch places with the color above it */
 .robot-tooth {
+    height: 35px;
+    width: 37px;
+    border-radius: 30%;
+    border: 2px solid gold;
+    background-color: white;
+    animation: top-bounce 2s infinite;
+
 }
 
+.toothone{
+    /* position: absolute;
+    left: 120px;
+    top: 43px; */
+    background-color: orange;
+    
+}
+.toothtwo{
+    /* position: absolute;
+    top: 43px; */
+    background-color: yellow;
+}
+.tooththree{
+    /* position: absolute;
+    top: 0px;
+    left: 40px; */
+    background-color: green;
+}
+.toothfour{
+    /* position: absolute;
+    top: 43px;
+    left: 200px; */
+    background-color: blue;
+}
+.toothfive{
+    /* position: absolute;
+    top: 40px;
+    left: 40px; */
+    background-color: purple;
+}
+.toothsix{
+    background-color: pink;
+    /* position: absolute;
+    top:0px;
+    left: 120px; */
+}
+.toothseven{
+    background-color: rgb(252, 194, 86);
+    /* position: absolute;
+    top: 0px;
+    left: 200px; */
+}
+.tootheight{
+    background-color: rgb(255, 255, 133);
+    /* position: absolute;
+    top: 0px ;
+    left: 80px; */
+}
+.toothnine{
+    background-color: rgb(92, 204, 92);
+    /* position: absolute;
+    top: 0px;
+    left: 160px;*/
+}
+.toothten{
+    background-color: rgb(119, 119, 245);
+    /* position: absolute;
+    top: 40px;
+    left: 160px; */
+}
+.tootheleven{
+    background-color: rgb(187, 95, 187);
+    /* position: absolute;
+    top: 40px;
+    left: 80px; */
+}
+.toothtwelve{
+    background-color: red;
+    /* position: absolute;
+    top: 1px;  */
+}
+
+@keyframes top-bounce{
+    0%, 100%{
+        top: 0px;
+        animation-timing-function: ease-in;
+    }
+    50%{
+        top: 65px;
+        animation-timing-function: ease-out;}
+}
+
+@keyframes bottom-bounce {
+    0%, 100%{
+        top: 65px;
+        animation-timing-function: ease-out;
+    }
+    50% {
+    top: 0px;
+    animation-timing-function: ease-in;
+    }
+}
+
+/* bounce */
 .robot-hair-style {
+    position: relative;
+    top: -650px;
+    left: 230px;
+    width: 475px;
+    height: 100px;
+    /* border: 3px solid blue; */
+    display: grid;
+    grid-template-columns: repeat(5, 85px);
+}
+
+/* move around the style box */
+.robot-hair-one {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: 15px 15px 0 0 rgb(102, 20, 209);
+}
+
+.robot-hair-two {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: 15px 15px 0 0 rgb(0, 255, 55);
+}
+
+.robot-hair-three {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: 15px 15px 0 0 rgb(172, 21, 21);
+}
+/* For positioning */
+.hairone{
+    position: relative;
+}
+.hairtwo{
+    position: relative;
+
+}
+.hairthree{
+    position: relative;
+
+}
+.hairfour{
+    position: relative;
+}
+.hairfive{
+    position: relative;
+    /* top: -315px; */
+    /* right: 145px; */
+}
+
+.robot-hair-one,
+.robot-hair-two,
+.robot-hair-three {
+    animation: hair-rock 3s infinite linear;
+}
+
+@keyframes hair-rock{
+    0%{
+        transform: rotate(0deg);
+
+    }
+    25%{
+        transform: rotate(45deg);
+    }
+    50%{
+        transform: rotate(90deg);
+    }
+    75%{
+        transform: rotate(45deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
 }
