@@ -218,21 +218,39 @@ body {
     height: 5em;
     width: 9em;
 }
-
-.robot-nose:before {
+.inner-nose{
+    position: relative;
+    top: 20px;
+    height: 2em;
+    width: 4em;
+    border: 2px solid pink;
+    border-radius: 50%;
+    background-color: rgb(219, 236, 64);
+    animation: move-nose 3s infinite linear;
 }
 
-.robot-nose:after {
+@keyframes move-nose {
+    0%, 100%{
+        transform: translate(0,0);
+    }
+    25%{
+        transform: translate(2em, -1.2em);    }
+    50%{
+        transform: translate(4.5em, 0em);
+    }
+    75%{
+        transform: translate(2em, 1.3em);
+    }
 }
+
 
 /* scale on hover */
 .robot-teeth {
     position: relative;
-    display: grid;
-    grid-template-columns: 40px 40px 40px 40px 40px 40px;
-    grid-template-rows: 41px, 41px;
-    row-gap: 2px;
-    column-gap: 2px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
     left: 100px ;
     top: 70px;
     height: 95px;
@@ -241,16 +259,16 @@ body {
     border-radius: 10%;
     background-color: #0471b9;
     padding: 6px 10px 3px;
-    transition: all 3s ease-in-out 0.5s ;
-    /* transition-delay: 1s;
-    transition-duration: 3s;
-    transition-property: background-color;
-    transition-timing-function: ease-in-out; */
+    transition: background-color 2s ease-in-out, transform 3s ease-in-out;
+    
 }
 
 .robot-teeth:hover{
     background-color: #b9a704;
     transform: scale(1.3);
+    /* transition-duration: 3s;
+    transition-property: background-color;
+    transition-timing-function: ease-in-out;  */
 }
 /* for all teeth, switch places with the color above it */
 .robot-tooth {
@@ -259,7 +277,7 @@ body {
     border-radius: 30%;
     border: 2px solid gold;
     background-color: white;
-    animation: top-bounce 2s infinite;
+    /* animation: top-bounce 2s infinite; */
 
 }
 
@@ -268,91 +286,100 @@ body {
     left: 120px;
     top: 43px; */
     background-color: orange;
+    animation: bottom-bounce 2s infinite;
     
 }
 .toothtwo{
     /* position: absolute;
     top: 43px; */
     background-color: yellow;
+    animation: bottom-bounce 2s infinite;
 }
 .tooththree{
     /* position: absolute;
     top: 0px;
     left: 40px; */
     background-color: green;
+    animation: bottom-bounce 2s infinite;
 }
 .toothfour{
     /* position: absolute;
     top: 43px;
     left: 200px; */
     background-color: blue;
+    animation: bottom-bounce 2s infinite;
 }
 .toothfive{
     /* position: absolute;
     top: 40px;
     left: 40px; */
     background-color: purple;
+    animation: bottom-bounce 2s infinite;
 }
 .toothsix{
     background-color: pink;
     /* position: absolute;
     top:0px;
     left: 120px; */
+    animation: top-bounce 2s infinite;
 }
 .toothseven{
     background-color: rgb(252, 194, 86);
+    animation: top-bounce 2s infinite;
     /* position: absolute;
     top: 0px;
     left: 200px; */
 }
 .tootheight{
     background-color: rgb(255, 255, 133);
+    animation: top-bounce 2s infinite;
     /* position: absolute;
     top: 0px ;
     left: 80px; */
 }
 .toothnine{
     background-color: rgb(92, 204, 92);
+    animation: top-bounce 2s infinite;
     /* position: absolute;
     top: 0px;
     left: 160px;*/
 }
 .toothten{
     background-color: rgb(119, 119, 245);
+    animation: top-bounce 2s infinite;
     /* position: absolute;
     top: 40px;
     left: 160px; */
 }
 .tootheleven{
     background-color: rgb(187, 95, 187);
+    animation: top-bounce 2s infinite;
     /* position: absolute;
     top: 40px;
     left: 80px; */
 }
 .toothtwelve{
     background-color: red;
+    animation: bottom-bounce 2s infinite;
     /* position: absolute;
     top: 1px;  */
 }
 
 @keyframes top-bounce{
     0%, 100%{
-        top: 0px;
-        animation-timing-function: ease-in;
+        transform: translateY(0px);
     }
     50%{
-        top: 65px;
-        animation-timing-function: ease-out;}
+        transform: translateY(-50px);
+    }
 }
 
 @keyframes bottom-bounce {
     0%, 100%{
-        top: 65px;
-        animation-timing-function: ease-out;
+        transform: translateY(0);
     }
     50% {
-    top: 0px;
-    animation-timing-function: ease-in;
+        transform: translateY(50px);
     }
 }
 
